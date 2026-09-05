@@ -431,4 +431,39 @@ data-styled.g472[id="sc-cdFAyu"]{content:"iTTivX,"}/*!sc*/
             font-family: PoppinsRegular;
             font-display: swap;
             src: url('https://d1yei2z3i6k35z.cloudfront.net/1827851/648d7186520e2_Poppins-Regular.ttf');
-          }</style></body></html>
+          }</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Find all the download guide buttons across the page
+    const downloadButtons = document.querySelectorAll('[id^="button-"]');
+    
+    downloadButtons.fnButton = function() {}; // placeholder check
+    
+    downloadButtons.forEach(button => {
+        // Check if the button text is "DOWNLOAD YOUR FREE GUIDE"
+        if (button.textContent.includes("DOWNLOAD YOUR FREE GUIDE")) {
+            // Override the default click behavior
+            button.addEventListener("click", function(event) {
+                // Find the inputs relative to the form container or document
+                const firstNameInput = document.querySelector('input[name="first_name"]');
+                const emailInput = document.querySelector('input[name="email"]');
+                
+                // Check if fields are empty
+                if ((firstNameInput && !firstNameInput.value.trim()) || (emailInput && !emailInput.value.trim())) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    alert("Please enter your first name and email address.");
+                    return false;
+                }
+                
+                // Update popup success message dynamically if needed
+                const popupMessage = document.querySelector('#text-cba493cf p');
+                if (popupMessage) {
+                    popupMessage.textContent = "Thank you for downloading. The Guide will be sent on the email.";
+                }
+            }, true); // Use capture phase to intercept before Systeme.io default handlers
+        }
+    });
+});
+</script>
+</body></html>
